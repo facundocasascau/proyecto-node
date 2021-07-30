@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Messi",
+        "price": "1000000",
+        "thumbnail": "https://as01.epimg.net/futbol/imagenes/2021/06/23/primera/1624440518_372415_1624440629_noticia_normal_recorte1.jpg"
+    },
+    {
+        "title": "Agüero",
+        "price": "100000",
+        "thumbnail": "https://www.fcbarcelonanoticias.com/uploads/s1/12/59/27/0/aguero-feliz-como-cule.jpeg"
+    },  {
+        "title": "Riquelme",
+        "price": "1000000000",
+        "thumbnail": "https://www.futbolete.com/wp-content/uploads/2020/10/Riquelme-con-chances-de-volver-a-jugar.jpg"
+    }
+]
