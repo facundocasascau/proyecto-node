@@ -16,7 +16,7 @@ server.on("error", error => console.log(`Ha ocurrido un error: ${error}`))
 const ubicacion = path.resolve(__dirname, './productos.json');
 
 
-//Listar en forma total (get) 
+//Listar en forma total (get)
 app.get('/productos', (req, response) => {
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
         if (error || data.length == 0) {
@@ -43,8 +43,12 @@ app.get('/productos/:id', (req, response) => {
                 error: 'producto no encontrado',
             });
         } else {
+
+          let match = productos.filter(x => x.id == posicion
+
+        )
             response.json({
-                item: productos[posicion - 1],
+                item: match,
             });
         }
     });
@@ -64,7 +68,7 @@ app.post('/guardar', (req, response) => {
         typeof body.price != 'number' ||
         typeof body.thumbnail != 'string'
     ) {
-        return res.status(400).json({
+        return response.status(400).json({
             msg: 'Ingrese title, price y url de foto por favor',
         });
     }
@@ -90,4 +94,26 @@ app.post('/guardar', (req, response) => {
         });
     });
 
+});
+
+//Actualizar un producto (put)
+
+app.put('/productos/:id', (req, response) => {
+    const posicion = parseInt(req.params.id)
+    fs.readFile(ubicacion, 'utf-8', (error, data) => {
+        let productos = JSON.parse(data);
+        if (posicion < 1 || posicion > productos.length) {
+            response.json({
+                error: 'producto no encontrado',
+            });
+        } else {
+
+          let match = productos.filter(x => x.id == posicion
+
+        )
+            response.json({
+                item: match,
+            });
+        }
+    });
 });
