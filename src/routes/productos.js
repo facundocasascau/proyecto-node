@@ -1,23 +1,12 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
 const fs = require('fs');
-const { brotliDecompress } = require('zlib');
-const app = express();
-const port = 8080;
+const router = express.Router();
 
-app.get('/', (req, res) => {
-    res.send('Estamos ATR')
-})
-
-const server = app.listen(port, () => {
-    console.log(`Se está escuchando por el puerto:${port}`)
-})
-server.on("error", error => console.log(`Ha ocurrido un error: ${error}`))
-const ubicacion = path.resolve(__dirname, './productos.json');
+const path = require('path');
+const ubicacion = path.resolve(__dirname, '../productos.json');
 
 
-//Listar en forma total (get)
-app.get('/productos', (req, response) => {
+router.get('/', (req, response) => {
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
         if (error || data.length == 0) {
             response.json({
@@ -34,19 +23,17 @@ app.get('/productos', (req, response) => {
 });
 
 //Listar en forma individual (get)
-app.get('/productos/:id', (req, response) => {
+router.get('/:id', (req, response) => {
     const posicion = parseInt(req.params.id)
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
         let productos = JSON.parse(data);
-        if (posicion < 1 || posicion > productos.length) {
+        let match = productos.filter(x => x.id == posicion)
+        if (match.length == 0) {
             response.json({
-                error: 'producto no encontrado',
+                error: 'el id no corresponde a ningún producto',
+
             });
         } else {
-
-          let match = productos.filter(x => x.id == posicion
-
-        )
             response.json({
                 item: match,
             });
@@ -56,8 +43,8 @@ app.get('/productos/:id', (req, response) => {
 
 
 //Almacenar un producto (post)
-app.use(express.json());
-app.post('/guardar', (req, response) => {
+
+router.post('/guardar', (req, response) => {
 
     const body = req.body;
     if (
@@ -72,6 +59,7 @@ app.post('/guardar', (req, response) => {
             msg: 'Ingrese title, price y url de foto por favor',
         });
     }
+    console.log(body)
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
         let productos = JSON.parse(data);
         let obj = {
@@ -96,24 +84,4 @@ app.post('/guardar', (req, response) => {
 
 });
 
-//Actualizar un producto (put)
-
-app.put('/productos/:id', (req, response) => {
-    const posicion = parseInt(req.params.id)
-    fs.readFile(ubicacion, 'utf-8', (error, data) => {
-        let productos = JSON.parse(data);
-        if (posicion < 1 || posicion > productos.length) {
-            response.json({
-                error: 'producto no encontrado',
-            });
-        } else {
-
-          let match = productos.filter(x => x.id == posicion
-
-        )
-            response.json({
-                item: match,
-            });
-        }
-    });
-});
+export default router;
