@@ -4,6 +4,8 @@ const fs = require('fs');
 const { brotliDecompress } = require('zlib');
 import Actualizar from './routes/actualizar';
 import Productos from './routes/productos.js';
+import Guardar from './routes/guardar.js';
+import Borrar from './routes/borrar.js';
 
 
 const app = express();
@@ -21,5 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/productos/actualizar', Actualizar);
-app.use('/productos', Productos);
+app.use('/api/actualizar', Actualizar);
+app.use('/api/productos', Productos);
+app.use('/api/guardar', Guardar);
+app.use('/api/borrar', Borrar);

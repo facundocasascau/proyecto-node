@@ -8,27 +8,20 @@ const ubicacion = path.resolve(__dirname, '../productos.json');
 
 
 
-router.put('/:pos', (req, response) => {
-  const posicion = parseInt(req.params.pos);
-  const body = req.body;
-
+router.delete('/:pos', (req, response) => {
   fs.readFile(ubicacion, 'utf-8', (error, data) => {
-    let productos = JSON.parse(data);
+    const posicion = parseInt(req.params.pos);
 
+    let productos = JSON.parse(data);
     let match = productos.filter(x => x.id == posicion)
     if (match.length == 0) {
       response.json({
         error: 'el id no corresponde a ningún producto',
       });
     } else {
-
-      for (const e in body) {
-        if (e == "price") {
-          match[0].price = body[e]
-        } else if (e == "title") {
-          match[0].title = body[e]
-        } else if (e == "thumbnail") {
-          match[0].thumbnail = body[e]
+      for (const e in productos){
+        if (productos[e].id == match[0].id) {
+          productos.splice(e,1);
         }
       }
 
@@ -39,21 +32,17 @@ router.put('/:pos', (req, response) => {
         } else {
           console.log('Se guardó correctamente');
           response.status(201).json({
-            item: match,
+            borrado: match,
           });
         }
       });
 
-
-
-      // response.json({
-      //     item: match,
-      // });
+      response.json({
+        error: 'el id ingresado no existe',
+      });
     }
-
-
   })
 
 })
 
-export default router;
+export default router
