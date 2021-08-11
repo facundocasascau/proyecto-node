@@ -1,0 +1,15 @@
+<main class="container-fluid">
+  <h2>Jugadores Disponibles</h2>
+
+  <div class="row px-3">
+    {{#each this}}
+    <div class="card col-3 px-1 mb-4" style="width: 18rem;">
+      <img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <h4>${{price}}</h4>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</main>

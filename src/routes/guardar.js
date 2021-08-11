@@ -10,7 +10,6 @@ const ubicacion = path.resolve(__dirname, '../productos.json');
 //Almacenar un producto (post)
 
 router.post('/', (req, response) => {
-
     const body = req.body;
     if (
         !body.title ||
@@ -20,12 +19,10 @@ router.post('/', (req, response) => {
         //typeof body.price != 'number' ||
         typeof body.thumbnail != 'string'
     ) {
-        return response.status(400).json({
-            msg: 'Ingrese title, price y url de foto por favor',
-        });
+        response.render('guardar', {layout: 'datosincorrectos'})
     }
-    console.log(body)
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
+    console.log(body)
         let productos = JSON.parse(data);
         let obj = {
             title: body.title,
@@ -40,9 +37,7 @@ router.post('/', (req, response) => {
                 console.log('Error al guardar', err);
             } else {
                 console.log('Se guardó correctamente');
-                response.status(201).json({
-                    data: obj,
-                });
+                response.render('guardar', {layout: 'guardar'})
             }
         });
     });
