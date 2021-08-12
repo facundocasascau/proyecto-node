@@ -1,0 +1,13 @@
+html
+  head
+    title='Listado de productos'
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+
+  body
+    div.container-fluid
+      h1=product[0].title
+      div(class="row px-3")
+        div(class="card col-6 px-1 mb-4" style="width: 18rem;")
+          img(class="card-img-top" src=product[0].thumbnail alt="Card image cap")
+          div class="card-body"
+            h4=product[0].price

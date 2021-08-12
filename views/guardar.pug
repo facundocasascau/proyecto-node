@@ -1,0 +1,18 @@
+html
+  head
+    title='Listado de productos'
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+
+  body
+    div.container-fluid
+      form(action="/productos/guardar" method="post")
+        div(class="form-group")
+          label(for="title")=Nombre
+          input(type="text" class="form-control" id="title" name="title" placeholder="Ingresar nombre")
+        div(class="form-group")
+          label(for="price")=Precio
+          input(type="number" class="form-control" id="price" name="price" placeholder="Ingrese precio")
+        div(class="form-group")
+          label(for="thumbnail")Foto
+          input(type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="Ingrese url de la foto")
+        button(type="submit" class="btn btn-primary")Submit

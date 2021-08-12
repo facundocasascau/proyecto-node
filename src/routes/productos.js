@@ -7,6 +7,7 @@ const ubicacion = path.resolve(__dirname, '../productos.json');
 
 
 router.get('/', (req, response) => {
+
   fs.readFile(ubicacion, 'utf-8', (error, data) => {
     if (error || data.length === 0) {
       response.json({
@@ -15,7 +16,8 @@ router.get('/', (req, response) => {
       return console.log('Ocurió un error', error);
     } else {
       let productos = JSON.parse(data);
-      response.json(productos);
+
+      response.render('productos.pug', {products: productos});
     }
 
   });
@@ -31,12 +33,9 @@ router.get('/:id', (req, response) => {
     if (match.length === 0) {
       response.json({
         error: 'el id no corresponde a ningún producto',
-
       });
     } else {
-      response.json({
-        item: match,
-      });
+    response.render('producto.pug', {product: match});
     }
   });
 });

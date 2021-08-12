@@ -7,10 +7,8 @@ import Productos from './routes/productos.js';
 import Guardar from './routes/guardar.js';
 import Borrar from './routes/borrar.js';
 
-
 const app = express();
 const port = 8080;
-
 const server = app.listen(port, () => {
     console.log(`Se está escuchando por el puerto:${port}`)
 })
@@ -21,6 +19,12 @@ app.use(express.static(publicPath));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.set('view engine', 'pug');
+const viewPath = path.resolve(__dirname, '../views');
+app.set('vies', viewPath);
+
+
 
 
 app.use('/api/actualizar', Actualizar);

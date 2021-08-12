@@ -5,8 +5,6 @@ const path = require('path');
 const ubicacion = path.resolve(__dirname, '../productos.json');
 
 
-
-
 router.put('/:pos', (req, response) => {
   const posicion = parseInt(req.params.pos);
   const body = req.body;
@@ -43,11 +41,6 @@ router.put('/:pos', (req, response) => {
         }
       });
 
-
-
-      // response.json({
-      //     item: match,
-      // });
     }
 
 
