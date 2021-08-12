@@ -24,14 +24,19 @@ router.post('/', (req, response) => {
             msg: 'Ingrese title, price y url de foto por favor',
         });
     }
-    console.log(body)
+
+
     fs.readFile(ubicacion, 'utf-8', (error, data) => {
         let productos = JSON.parse(data);
+        let idsProductos = [];
+        productos.forEach(e => idsProductos.push(e.id))
+        console.log(productos)
+        let max = Math.max(...idsProductos);
         let obj = {
             title: body.title,
             price: body.price,
             thumbnail: body.thumbnail,
-            id: productos.length + 1
+            id: max + 1
         };
         productos.push(obj);
         let objeto = JSON.stringify(productos);

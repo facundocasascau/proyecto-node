@@ -13,14 +13,14 @@ router.delete('/:pos', (req, response) => {
     const posicion = parseInt(req.params.pos);
 
     let productos = JSON.parse(data);
-    let match = productos.filter(x => x.id == posicion)
-    if (match.length == 0) {
+    let match = productos.filter(x => x.id === posicion)
+    if (match.length === 0) {
       response.json({
         error: 'el id no corresponde a ningún producto',
       });
     } else {
       for (const e in productos){
-        if (productos[e].id == match[0].id) {
+        if (productos[e].id === match[0].id) {
           productos.splice(e,1);
         }
       }
@@ -38,7 +38,7 @@ router.delete('/:pos', (req, response) => {
       });
 
       response.json({
-        error: 'el id ingresado no existe',
+        borrado: match,
       });
     }
   })
