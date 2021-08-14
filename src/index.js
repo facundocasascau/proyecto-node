@@ -6,6 +6,8 @@ import Actualizar from './routes/actualizar';
 import Productos from './routes/productos.js';
 import Guardar from './routes/guardar.js';
 import Borrar from './routes/borrar.js';
+import * as http from 'http';
+import io from 'socket.io';
 
 const app = express();
 const port = 8080;
@@ -13,6 +15,12 @@ const server = app.listen(port, () => {
     console.log(`Se está escuchando por el puerto:${port}`)
 })
 server.on("error", error => console.log(`Ha ocurrido un error: ${error}`))
+
+// const myServer = http.Server(app)
+// const myWSServer = io(myServer)
+// myWSServer.on('connectio', function(socket)){
+//   console.log(\n\n)
+// }
 
 const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));

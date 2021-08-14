@@ -5,12 +5,9 @@ const router = express.Router();
 const path = require('path');
 const ubicacion = path.resolve(__dirname, '../productos.json');
 
-
-
 //Almacenar un producto (post)
 
 router.post('/', (req, response) => {
-
   const body = req.body;
   if (
     !body.title ||
@@ -24,7 +21,6 @@ router.post('/', (req, response) => {
       msg: 'Ingrese title, price y url de foto por favor',
     });
   }
-
   fs.readFile(ubicacion, 'utf-8', (error, data) => {
     let productos = JSON.parse(data);
     let idsProductos = [];
