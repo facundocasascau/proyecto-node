@@ -7,12 +7,12 @@ html
     div.container-fluid
       form(action="/api/guardar" method="post")
         div(class="form-group")
-          label(for="title")=Nombre
+          label(for="title")="Nombre"
           input(type="text" class="form-control" id="title" name="title" placeholder="Ingresar nombre")
         div(class="form-group")
-          label(for="price")=Precio
+          label(for="price")="Precio"
           input(type="number" class="form-control" id="price" name="price" placeholder="Ingrese precio")
         div(class="form-group")
-          label(for="thumbnail")=Foto
+          label(for="thumbnail")="Foto"
           input(type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="Ingrese url de la foto")
-        button(type="submit" class="btn btn-primary")=Submit
+        button(type="submit" class="btn btn-primary")="Submit"

@@ -14,15 +14,15 @@ const server = app.listen(port, () => {
 })
 server.on("error", error => console.log(`Ha ocurrido un error: ${error}`))
 
-const publicPath = path.resolve(__dirname, '../public');
-app.use(express.static(publicPath));
+// const publicPath = path.resolve(__dirname, '../public');
+// app.use(express.static(publicPath));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug');
 const viewPath = path.resolve(__dirname, '../views');
-app.set('vies', viewPath);
+app.set('views', viewPath);
 
 
 

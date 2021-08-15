@@ -11,5 +11,6 @@ html
           div(class="card col-3 px-1 mb-4" style="width: 18rem;")
             img(class="card-img-top" src=e.thumbnail alt="Card image cap")
             div(class="card-body")
-              h5(class="card-title")=e.title
-              h4=e.price
+              a(href="/api/productos/"+e.id class="text-decoration-none text-dark")
+                h5(class="card-title")=e.title
+              h4="$"+e.price
