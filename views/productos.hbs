@@ -6,6 +6,11 @@
       <img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
       <div class="card-body">
         <h4>${{price}}</h4>
+        <form action="/api/borrar/{{id}}" method="post">
+          <button type="submit" class="btn btn-primary" id="delete" name="delete">
+            Eliminar
+          </button>
+        </form>
       </div>
     </div>
   </div>

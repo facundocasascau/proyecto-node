@@ -17,7 +17,7 @@ const server = app.listen(port, () => {
 })
 server.on("error", error => console.log(`Ha ocurrido un error: ${error}`))
 
-const publicPath = path.resolve(__dirname, '../public');
+// const publicPath = path.resolve(__dirname, '../public');
 // app.use(express.static(publicPath));
 
 const layoutFolderPaths = path.resolve(__dirname, '../views/layouts');
