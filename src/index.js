@@ -55,17 +55,18 @@ fs.readFile(ubicacion, 'utf-8', (error, data) => {
         id: max +1,
         user: socket.client.id
       };
-      console.log(newMessage);
       productos.push(newMessage);
       myWSServer.emit('messages', productos);
       let objeto = JSON.stringify(productos);
-      fs.writeFile(ubicacion, objeto, (err, e) => {
-        if (err) {
-          console.log('Error al guardar', err);
-        } else {
-          console.log('Se guardó correctamente');
-        }
-      });
+      
+      //Guardando en el Json
+      // fs.writeFile(ubicacion, objeto, (err, e) => {
+      //   if (err) {
+      //     console.log('Error al guardar', err);
+      //   } else {
+      //     console.log('Se guardó correctamente');
+      //   }
+      // });
     });
 
     socket.on('askData', (data) => {
