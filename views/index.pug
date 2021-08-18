@@ -1,0 +1,25 @@
+html
+  head
+    meta(charset="UTF-8")
+    title='Guardar productos'
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+
+  body
+    div(class="container-fluid")
+      h1="Registrar un nuevo producto"
+
+      div(class="form-group")
+        label(for="title")="Nombre"
+        input(type="text" class="form-control" name="name" id="title")
+        label(for="title")="Precio"
+        input(type="number" class="form-control" name="price" id="price")
+        label(for="title")="Foto"
+        input(type="text" class="form-control" name="thumbnail" id="thumbnail")
+      button(onclick="sendData(this)" class="btn btn-primary" id="submitButton")="ENVIAR"
+      h2='Jugadores disponibles'
+      div(class="row px-3" id="messages")
+
+
+
+    script(src="/socket.io/socket.io.js")
+    script(src="../main.js")

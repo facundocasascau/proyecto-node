@@ -5,7 +5,7 @@ const router = express.Router();
 const path = require('path');
 const ubicacion = path.resolve(__dirname, '../productos.json');
 
-
+//Listar todos los productos
 router.get('/', (req, response) => {
 
   fs.readFile(ubicacion, 'utf-8', (error, data) => {
@@ -13,15 +13,12 @@ router.get('/', (req, response) => {
       response.json({
         error: 'no hay productos cargados',
       });
-      return console.log('Ocurió un error', error);
+      return console.log('Ocurrió un error', error);
     } else {
       let productos = JSON.parse(data);
-
       response.render('productos.pug', {products: productos});
     }
-
   });
-
 });
 
 //Listar en forma individual (get)
@@ -35,7 +32,7 @@ router.get('/:id', (req, response) => {
         error: 'el id no corresponde a ningún producto',
       });
     } else {
-    response.render('producto.pug', {product: match});
+      response.render('producto.pug', {product: match});
     }
   });
 });

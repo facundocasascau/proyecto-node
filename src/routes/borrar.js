@@ -5,13 +5,9 @@ const router = express.Router();
 const path = require('path');
 const ubicacion = path.resolve(__dirname, '../productos.json');
 
-
-
-
-router.delete('/:pos', (req, response) => {
+router.post('/:id', (req, response) => {
   fs.readFile(ubicacion, 'utf-8', (error, data) => {
-    const posicion = parseInt(req.params.pos);
-
+    const posicion = parseInt(req.params.id);
     let productos = JSON.parse(data);
     let match = productos.filter(x => x.id === posicion)
     if (match.length === 0) {
@@ -30,7 +26,6 @@ router.delete('/:pos', (req, response) => {
         if (err) {
           console.log('Error al guardar', err);
         } else {
-          console.log('Se guardó correctamente');
           response.status(201).json({
             borrado: match,
           });
