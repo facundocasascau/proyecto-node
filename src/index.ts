@@ -54,7 +54,7 @@ fs.readFile(ubicacion, 'utf-8', (error, data) => {
         thumbnail: data.thumbnail,
         id: max +1,
         user: socket.client.id
-      };
+      }; 
       productos.push(newMessage);
       myWSServer.emit('messages', productos);
       let objeto = JSON.stringify(productos);
